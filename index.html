@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/style.css">
+    <title>Chat</title>
+</head>
+
+<body>
+    <div class="heading">
+        <h1>Online</h1>
+        <span id="total-users">3</span>
+    </div>
+    <div class="firstPage" id="firstPage">
+        <label for="name">Enter Name</label>
+        <input type="text" id="name">
+        <button id="startBtn">Start</button>
+    </div>
+    <div class="container" id="container">
+        <div class="area" id="area">
+            <ul id="messages"></ul>
+        </div>
+        <div class="controls">
+            <form id="form">
+                <input name="input" id="input">
+                <button id="sendBtn">Send</button>
+                <button id="clear">Clear</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
