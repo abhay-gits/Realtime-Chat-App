@@ -1,18 +1,11 @@
+let tone = new Audio('tone.mp3')
 const socket = io();
-const tone = new Audio('tone.mp3')
-socket.on('total-users', (data) => {
-    document.getElementById('total-users').textContent = data;
-
-})
 const messages = document.querySelector('#messages');
 const form = document.getElementById('form')
-const input = document.getElementById('input')
 const btn = document.getElementById('sendBtn')
-const clear = document.getElementById('clear');
-
 const startBtn = document.getElementById('startBtn')
-let userName = "User";
 
+/* -------------First Page----------------- */
 startBtn.addEventListener('click', namefun);
 function namefun() {
     const name = document.getElementById('name');
@@ -22,32 +15,46 @@ function namefun() {
     socket.emit('chat message', `<u>${userName} connected</u>`);
     return userName;
 }
+let userName = "User";
 userName = namefun;
-
+/* --------Input taking $ Emitting--------- */
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    sendMessage();
-})
-
-socket.on('chat message', (message) => {
-    const li = document.createElement('li');
-    li.innerHTML = message;
-    messages.appendChild(li);
-    tone.play();
-    autoScroll();
-    clear.addEventListener('click', () => {
-        messages.removeChild(li);
-    })
-})
-
-function sendMessage() {
+    let input = document.getElementById('input');
+    let inputData = `${userName}  ):  ${input.value}`;
     if (input.value) {
-        socket.emit('chat message', `${userName}  ):  ${input.value}`);
+        socket.emit('chat message', inputData);
+        whoseMessage(true, input.value)
         input.value = "";
     }
+})
+
+/* -----------Recieving------------ */
+socket.on('chat message', (message) => {
+    whoseMessage(false, message);
+    tone.play();
+})
+/* --------------Main Function------------ */
+function whoseMessage(mine, message) {
+    const li = document.createElement('li');
+    if (mine) {
+        li.classList.add("right")
+    }
+    else if (!mine) {
+        li.classList.add("left")
+    }
+    li.innerHTML = message;
+    messages.appendChild(li);
+    autoScroll();
 }
+
+/* ------------Auto Scroll--------------- */
 const area = document.getElementById('area')
-function autoScroll(){
-    area.scrollTo(0,area.scrollHeight)
+function autoScroll() {
+    area.scrollTo(0, area.scrollHeight)
 }
+/* --------------Online Status------------ */
+socket.on('total-users', (data) => {
+    document.getElementById('total-users').textContent = data;
+})
+

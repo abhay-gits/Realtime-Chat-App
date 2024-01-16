@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Chat</title>
 </head>
 
 <body>
     <div class="heading">
-        <h1>Online</h1>
+        <h1>Private Chat</h1>
         <span id="total-users">3</span>
     </div>
     <div class="firstPage" id="firstPage">
@@ -20,18 +21,25 @@
     </div>
     <div class="container" id="container">
         <div class="area" id="area">
-            <ul id="messages"></ul>
+            <ul id="messages">
+                <!-- <li class="left">
+                    <p></p>
+                </li>
+                <li class="right">
+                    <p></p>
+                </li> -->
+            </ul>
         </div>
         <div class="controls">
             <form id="form">
                 <input name="input" id="input">
                 <button id="sendBtn">Send</button>
-                <button id="clear">Clear</button>
             </form>
         </div>
     </div>
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
     <script src="index.js"></script>
+    <!-- <script src="public/index.js"></script> -->
 </body>
 
 </html>

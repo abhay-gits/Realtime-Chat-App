@@ -16,7 +16,6 @@ app.use(cors());
 
 /* ------------------------Sockets--------------------------------- */
 let totalSockets = new Set();
-
 io.on('connection', mainConnection)
 /* Connection Handling */
 function mainConnection(socket) {
@@ -26,7 +25,7 @@ function mainConnection(socket) {
 
     /* Message Handling */
     socket.on('chat message', (message) => {
-        io.emit('chat message', message);
+        socket.broadcast.emit('chat message', message);
     })
     /* Disconection Handling */
     socket.on('disconnect', () => {

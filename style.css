@@ -72,6 +72,27 @@ body {
 .area ul {
     padding: 10px;
 }
+.area ul li{
+    margin-bottom: 5px;
+}
+.left{
+    border: solid 2px red;
+    color: red;
+    justify-content: start;
+    display: flex;
+    padding: 7px;
+    border-radius: 15px;
+    background-color: white;
+}
+.right{
+    border: solid 1px blue;
+    color: blue;
+    justify-content: end;
+    display: flex;
+    padding: 7px;
+    border-radius: 15px;
+    background-color: white;
+}
 
 #input {
     width: 80%;
